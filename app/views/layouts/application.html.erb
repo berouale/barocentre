@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html style="overscroll-behavior: none;">
+  <head>
+    <title>Barocentre | Mets tous tes potes d'accord</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1">
+    <meta name="theme-color" content="#001D3D">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.11.0/mapbox-gl.js"></script>
+      <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="<%= asset_path 'manifest.json' %>">
+    <%= render 'shared/ios_pwa_links' %>
+    <meta name="description" content="Crée des événements et invite tes copains pour trouver le meilleur bar où se retrouver">
+
+    <!-- Facebook Open Graph data -->
+    <meta property="og:title" content="Barocentre | Mets tous tes potes d'accord">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:image" content="<%= image_url('barocentre.jpg') %>">
+    <meta property="og:description" content="Crée des événements et invite tes copains pour trouver le meilleur bar où se retrouver">
+    <meta property="og:site_name" content="Barocentre | Mets tous tes potes d'accord">
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+    <%= render "shared/navbar" %>
+    <% end %>
+    <%= render "shared/flashes" %>
+    <%= yield %>
+  </body>
+</html>

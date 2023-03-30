@@ -1,0 +1,13 @@
+.animate__animated {
+  --animate-duration: 2s;
+  --animate-delay: 10s;
+}
+
+.fa-dice::before {
+  color: $darkblue;
+}
+
+.animate__animated.animate__shakeY {
+  --animate-duration: 5s;
+  --animate-delay: 10s;
+}

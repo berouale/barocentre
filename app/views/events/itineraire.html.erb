@@ -1,0 +1,17 @@
+<div class="baro-map"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-finalbarmarker-value="<%= @finalbarmarker.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+<div class="card-product" style="width: 300px; border-radius: 5px; padding: 0; position : fixed; bottom : 50px; right: 35px">
+  <%= image_tag @bar.photo, class: "bar-img" %>
+  <div class="card-product-infos">
+    <div>
+      <h2><%= @bar.name %></h2>
+      <p><%= @bar.address %></p>
+      <p><%= @bar.rating %> <i class="fa-solid fa-star"></i></p>
+    </div>
+  </div>
+</div>
+      <%= link_to 'Itinéraire', "https://www.google.com/maps/dir/?api=1&origin=#{CGI.escape(@event_user.user_address)}&destination=barocentre&destination_place_id=#{@bar.placeid}&travelmode=#{@event_user.transport}", class: 'btn btn-flat', target: '_blank', style: "position : fixed; bottom : 30px; right: 20px; border-radius: 20px" %>

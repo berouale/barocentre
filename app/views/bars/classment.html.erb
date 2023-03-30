@@ -1,0 +1,25 @@
+<div class="justify-content-center" data-controller="event-subscription"
+      data-event-subscription-event-id-value="<%= @event.id%>">
+    <div class="col-sm-3 col-lg-12 p-4">
+      <div class="text-center mt-2">
+      <h1><%= @event.name.capitalize %></h1>
+          <p class="pb-2">
+          <i class="fa-solid fa-crown"></i> <strong><%= @event.user.username %></strong>
+        </p>
+    </div>
+        <p class="border-bottom border-secondary text-left">Participants</p>
+    <div class="ranking-wrapper" data-controller="toggle-elements">
+      <%# Pour afficher le mot "cloturer le vote, qui va faire apparaitre le bouton choisir" %>
+      <% if current_user == @event.user %>
+        <div class="d-flex justify-content-center mt-3" style="width:100%">
+          <%= link_to "Clôture le vote", event_choose_bar_path(@event), class:"choose-btn btn-ghost"%>
+        </div>
+      <% end %>
+        <div class="row justify-content-center p-3">
+          <% @bars.each do |bar| %>
+          <%= render "bar_classment", bar: bar, event: @event%>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>

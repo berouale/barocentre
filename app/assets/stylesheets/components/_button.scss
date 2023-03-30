@@ -1,0 +1,122 @@
+.index {
+  .btn-wrapper {gap: 0.2rem}
+  .btn-ghost {
+    width: calc(50% - 0.1rem);
+    max-width: 200px;
+  }
+}
+
+.btn-ghost {
+  background-color:$darkblue;
+  color: #ffffff;
+  padding: 6px 22px;
+  border-radius: 50px;
+  font-weight: lighter;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  opacity: 0.2;
+}
+
+.btn-flat {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: $blue;
+  transition: background 0.3s ease;
+}
+
+.btn-flat:hover {
+  background:$darkblue;
+  color: white;
+}
+
+.btn-gradient {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: linear-gradient(#ffffff, #ffffff);
+  transition: background 0.3s ease;
+  border: 1px solid #0F60C4;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(#ffffff, #ffffff);
+  color: white;
+}
+
+
+.choose-btn.active {
+  display: none;
+}
+
+.validate-bar-btn {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  transition: opacity ease 0.3s;
+  border: none;
+
+  &.active {
+    opacity: 1;
+    width: 20%;
+    height: fit-content;
+    color: $orange;
+    border: none;
+  }
+}
+
+.btn-secondary {
+  background-color: #000814;
+  text-decoration: none;
+  color: #ffffff;
+  padding: 6px 22px;
+  border-radius: 20px;
+  font-weight: lighter;
+  transition: background 0.3s ease;
+}
+
+.share-btn {
+  background-color:$orange;
+  color: $darkblue;
+  padding: 20px 35px;
+  border-radius: 50px;
+  font-weight: lighter;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.btn-minishare {
+  color: white;
+  background-color: $darkblue;
+  border-radius: 50%;
+  padding: 7px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+.btn-bar {
+  background-color: $orange;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 50px;
+  padding: 20px;
+  width: 92px;
+
+  &:hover {
+    background-color:$orange;
+    color: #ffffff;
+    opacity: 0.6;
+  }
+
+  &:active {
+    background-color:$orange !important;
+    color: #ffffff !important;
+    opacity: 0.6;
+  }
+}

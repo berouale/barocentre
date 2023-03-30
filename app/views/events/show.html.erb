@@ -1,0 +1,62 @@
+<div class="custom-container container">
+  <% if current_user == @event.user %>
+    <div class="d-flex justify-content-end pt-2">
+      <% if current_user.photo.attached? %>
+        <%= cl_image_tag current_user.photo.key, width: 70, height: 70, :radius=>"max", :crop=>"fill", class: "rounded-circle" %>
+      <% else %>
+        <%= image_tag "https://as1.ftcdn.net/v2/jpg/03/53/11/00/1000_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg", class: "rounded-circle", style: "width: 70px"%>
+      <% end %>
+    </div>
+    <div class="flex-column square-box d-flex justify-content-center align-items-center">
+      <h2 class="align-items-center text-center my-4">
+        <span class="fs-1" style="color: #001D3D; font-size: 30px !important">
+          <%= @event.name.capitalize %>
+        </span>
+      </h2>
+
+
+    <div class="badge anim">
+      <div class="beer-animation-wrapper">
+        <div class="beer">
+          <div class="foam"></div>
+        </div>
+      </div>
+    </div>
+
+
+      <div class ="mt-5">
+        <span class="share-btn" data-controller="share"
+            data-action="click->share#share"
+            data-share-title-value="<%= @event.name %>"
+            data-share-url-value="<%= new_event_event_user_url(@event) %>">
+          Inviter les copains <i class="fa-solid fa-share-from-square"></i>
+        </span>
+        <br>
+        <br>
+      </div>
+      <% unless current_user && current_user.participates_to_event?(@event) %>
+        <div class ="mt-5">
+          <%= link_to root_path, class: "btn-secondary m-1" do %>
+            <i class="fa-solid fa-arrow-left"></i>
+          <% end%>
+          <%= link_to "S'inscrire", new_event_event_user_path(@event), class: "btn-ghost m-1" %>
+
+        </div>
+      <% else %>
+        <div class ="m-1">
+          <%= link_to "Continuer", event_event_users_path(@event), class: "btn-ghost" %>
+          <%= link_to "back", root_path, class: "btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+
+
+
+  <% else %>
+    <div class="container hauteur flex-column square-box d-flex justify-content-center align-items-center">
+      <h1>ACCESS DENY</h1>
+    </div>
+  <% end %>
+</div>
+
+<%= render 'shared/footer' %>

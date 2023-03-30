@@ -1,0 +1,49 @@
+
+<div class="index wraper" data-controller="event-subscription sweatalert"
+      data-event-subscription-event-id-value="<%= @event.id%>"
+      data-event-subscription-current-user-id-value="<%= current_user.id%>">
+  <div class="justify-content-center">
+    <div class="col-sm-3 col-lg-12 ps-5 pe-5 pt-3 pb-2">
+      <div class="text-center mt-2">
+        <div class="d-flex justify-content-center" style="width: 100">
+          <h1><%= @event.name.capitalize %></h1>
+        </div>
+
+
+        <div class="d-flex justify-content-center mb-3 btn-wrapper" >
+        <% if current_user == @event.user %>
+          <div class="btn btn-bar" data-action="click->sweatalert#fire">
+            <div class="d-flex justify-content-center align-items-center" >
+              <i class="animate__animated animate__wobble animate__infinite fa-solid fa-dice"></i>
+            </div>
+          </div>
+            <%= link_to "lol", create_bars_path(@event), class: "d-none", data: { turbo_method: :post, sweatalert_target: "link"} %>
+          <% end %>
+          <div class="d-none" data-sweatalert-target="loader">
+            <%= render "shared/loader" %>
+          </div>
+        </div>
+      </div>
+        <p class="text-center"><i class="fa-solid fa-crown"></i> <strong><%= @event.user.username %></strong></p>
+        <div class="d-flex border-bottom border-secondary justify-content-between align-items-center mt-5 mb-3 pb-1">
+          <p class="text-start" style="font-size: 16px; margin: 0px;">Participants</p>
+          <span class="btn-minishare" data-controller="share"
+                data-action="click->share#share"
+                data-share-title-value="<%= @event.name %>"
+                data-share-url-value="<%= new_event_event_user_url(@event) %>">
+                <i class="fa-solid fa-share-from-square"></i>
+          </span>
+        </div>
+      <div class="row d-flex justify-content-center pt-2 <%= "owner" if @event.user == current_user %>" data-event-subscription-target="users">
+        <% @eventusers.each do |element| %>
+          <%= render "event_users/event_user", element: element%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3 col-lg-12 d-flex justify-content-center" data-sweatalert-target="map">
+    <%= link_to map_event_users_path, class: "btn btn-ghost", style: "border: 1px solid black; border-radius: 20Px; position : fixed; bottom : 50px;" do %>
+      CARTE <i class="fa-solid fa-map"></i>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container custom-container">
+  <div class="pt-5">
+
+    <div class="d-flex flex-column justify-content-center">
+
+      <h1 class="text-center fw-bold" style="color: #001D3D"><%= @event.name.capitalize %></h1>
+
+      <h5 class="text-center fw-light" style="color: #FFC300"><i class="fa-regular fa-calendar"></i> <%= I18n.l(@event.date).capitalize %></h5>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <%= simple_form_for [@event, @event_user],
+                        html: {
+                          data: {
+                            controller: "address-autocomplete",
+                            address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]
+                          }
+                        } do |f| %>
+      <%= f.input :user_address,
+                  label: false,
+                  placeholder: "68 avenue Parmentier",
+                  input_html: {
+                    class: 'd-none',
+                    data: {
+                      address_autocomplete_target: "address",
+                    }
+                  },
+                  wrapper_html: {
+                    data: {
+                      address_autocomplete_target: 'wrapper'
+                    }
+                  } %>
+<br>
+      <%= f.input :latitude, as: :hidden, input_html: { data: { address_autocomplete_target: 'latitude' } } %>
+      <%= f.input :longitude, as: :hidden, input_html: { data: { address_autocomplete_target: 'longitude' } } %>
+      <%= f.input :transport, legend_tag: false, as: :radio_buttons,
+            collection_wrapper_tag: 'div',
+            collection_wrapper_class: 'category-wrapper',
+            item_wrapper_class: 'category-item',
+            input_html: {class: 'category-selector'},
+            collection: ["driving", "transit", "bicycling"],
+            label_method: ->(cat) {
+              content_tag('span') { " "
+              }
+            } %>
+      <br>
+            <div class="d-flex justify-content-end">
+              <%= f.submit "Je participe !", class: "btn btn-ghost me-3 mb-3"%>
+            </div>
+    <% end %>
+  </div>
+</div>
+<%= render 'shared/footer' %>
